@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Connect — Kaustav Khanikar</title>
+  <meta name="description" content="Contact Kaustav Khanikar by email or phone.">
+  <meta name="theme-color" content="#f4f3ef">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="strip"><strong>Student and self-taught developer</strong> from India. Live projects can be opened and tested.</div>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="index.html">kaustav<span>.portfolio</span></a>
+    <button class="menu-btn" aria-controls="nav" aria-expanded="false">Menu</button>
+    <nav class="nav" id="nav" aria-label="Main">
+      <a href="index.html">Home</a>
+      <a href="projects.html">Projects</a>
+      <a href="skills.html">Skills</a>
+      <a href="about.html">About</a>
+      <a href="contact.html" aria-current="page">Connect</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <section class="page-head">
+    <div class="wrap">
+      <h1>Connect with me</h1>
+      <p>Write about a project, a question on how something was built, or feedback on my work. Email gets the fastest reply.</p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:44px">
+    <div class="wrap contact-grid">
+      <dl class="clist" style="margin:0">
+        <div class="crow">
+          <div><dt>Email</dt><dd><a data-email href="mailto:kaustav4535@gmail.com" style="text-decoration:none">kaustav4535@gmail.com</a></dd></div>
+          <div class="acts">
+            <a class="btn small dark" data-mailto href="mailto:kaustav4535@gmail.com">Write</a>
+            <button class="btn small" type="button" data-copy="email">Copy</button>
+          </div>
+        </div>
+        <div class="crow">
+          <div><dt>Phone</dt><dd><a data-phone href="tel:+919395046594" style="text-decoration:none">+91 9395046594</a></dd></div>
+          <div class="acts">
+            <a class="btn small dark" data-tel href="tel:+919395046594">Call</a>
+            <button class="btn small" type="button" data-copy="phone">Copy</button>
+          </div>
+        </div>
+        <div class="crow">
+          <div><dt>Location</dt><dd>India</dd></div>
+        </div>
+      </dl>
+
+      <form class="form" id="contact-form" novalidate>
+        <h2>Send a message</h2>
+        <p class="hint">This opens your email app with the message ready to send.</p>
+        <div class="field"><label for="f-name">Your name</label><input id="f-name" name="name" type="text" autocomplete="name" required></div>
+        <div class="field"><label for="f-email">Your email</label><input id="f-email" name="email" type="email" autocomplete="email" required></div>
+        <div class="field"><label for="f-subject">Subject</label><input id="f-subject" name="subject" type="text"></div>
+        <div class="field"><label for="f-msg">Message</label><textarea id="f-msg" name="message" required></textarea></div>
+        <button class="btn dark" type="submit">Open email draft</button>
+        <p class="note">Nothing is stored on this site. Your message goes only to the email app on your device.</p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <a class="brand" href="index.html">kaustav<span>.portfolio</span></a>
+        <p>Full-stack products, interface design and deployment by Kaustav Khanikar.</p>
+      </div>
+      <div>
+        <h4>Pages</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="skills.html">Skills</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Connect</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a data-email href="mailto:kaustav4535@gmail.com">kaustav4535@gmail.com</a></li>
+          <li><a data-phone href="tel:+919395046594">+91 9395046594</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="legal">&copy; <span data-year>2026</span> Kaustav Khanikar. Names and marks of other companies shown in my projects belong to their owners.</p>
+  </div>
+</footer>
+
+<script src="assets/js/config.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>

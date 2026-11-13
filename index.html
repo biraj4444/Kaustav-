@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kaustav Khanikar — Full-stack developer and interface designer</title>
+  <meta name="description" content="Portfolio of Kaustav Khanikar: full-stack web products, interaction design and deployment, built end to end.">
+  <meta name="theme-color" content="#f4f3ef">
+  <meta property="og:title" content="kaustav.portfolio">
+  <meta property="og:description" content="Full-stack products, interaction design and deployment by Kaustav Khanikar.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="strip"><strong>Student and self-taught developer</strong> from India. Live projects can be opened and tested.</div>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="index.html">kaustav<span>.portfolio</span></a>
+    <button class="menu-btn" aria-controls="nav" aria-expanded="false">Menu</button>
+    <nav class="nav" id="nav" aria-label="Main">
+      <a href="index.html" aria-current="page">Home</a>
+      <a href="projects.html">Projects</a>
+      <a href="skills.html">Skills</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Connect</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <div class="chip reveal"><i></i>Portfolio of Kaustav Khanikar</div>
+        <h1 class="reveal">Full-stack products, built <span class="grad-text">end to end</span>, and set up properly.</h1>
+        <p class="lead reveal">I design the interaction, write the code, deploy it and document the thinking behind it. The work below is the evidence.</p>
+        <p class="sub reveal">Web development, interface design and software engineering, learned by building complete things rather than exercises.</p>
+        <div class="cta reveal">
+          <a class="btn dark" href="projects.html">View projects</a>
+          <a class="btn" href="about.html">How I work</a>
+        </div>
+        <div class="hero-facts reveal">
+          <div><b>Python, Flask</b>Backends</div>
+          <div><b>HTML, CSS, JS</b>Interfaces</div>
+          <div><b>Cloudflare, Render</b>Deployment</div>
+        </div>
+      </div>
+
+      <div class="phone-col">
+        <div class="phone">
+          <div class="screen" id="screen">
+            <span class="island" aria-hidden="true"></span>
+            <div class="intro-screen" id="introScreen">
+              <div class="k">kaustav.portfolio</div>
+              <div class="t">Ideas that<br>actually <span class="grad-text">ship</span>.</div>
+              <p class="s">Interface, engineering and deployment, handled by one person.</p>
+              <ul>
+                <li>Interaction concepts</li>
+                <li>Full-stack web apps</li>
+                <li>Static sites that load fast</li>
+                <li>Documentation that teaches</li>
+              </ul>
+            </div>
+            <div class="screen-ctrl">
+              <span id="barTime">0:00 / 0:10</span>
+              <div class="bar"><i id="barFill"></i></div>
+              <button class="mute-btn" id="muteBtn" type="button" aria-label="Unmute video">🔇</button>
+            </div>
+          </div>
+        </div>
+        <p class="phone-cap">A 10 second introduction</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>One person, the whole path from idea to live URL</h2>
+        <p>Most portfolios show finished screens. This one shows how each piece was decided, built and put online.</p>
+      </div>
+      <div class="cols">
+        <div class="col">
+          <h3>Design the interaction</h3>
+          <p>I start from what a person should feel and notice, then choose type, colour and motion that serve it. Nothing decorative survives if it does not explain something.</p>
+        </div>
+        <div class="col">
+          <h3>Engineer it completely</h3>
+          <p>Plain HTML, CSS and JavaScript where that is enough. Python and Flask with MongoDB and Google sign-in where a real backend is needed.</p>
+        </div>
+        <div class="col">
+          <h3>Ship and explain it</h3>
+          <p>Every project is deployed, linked and written up with its trade-offs, including the legal, support and search pages most builders skip.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section paper">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Selected projects</h2>
+        <p>Each one is live. Open them, click around, and judge the work directly.</p>
+      </div>
+      <div class="plist" id="projects-featured"></div>
+      <p style="margin-top:28px"><a class="btn" href="projects.html">See all projects</a></p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Setup and configuration skills</h2>
+        <p>Beyond building pages, I can set up and connect the services a real product depends on, and fix them when they break.</p>
+      </div>
+      <div class="steaser" id="skills-teaser"></div>
+      <p style="margin-top:28px"><a class="btn" href="skills.html">See the full skill details</a></p>
+    </div>
+  </section>
+
+  <section class="section paper">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>How I think about building</h2>
+        <p>Four decisions from my own projects that show the reasoning, not just the result.</p>
+      </div>
+      <div class="principles">
+        <div class="pr">
+          <h3>Cut scope when the content is the product</h3>
+          <p>I dropped a full Flask version of AdSense Helper and rebuilt it as a static site. The guide's value was accurate, readable steps, and a backend only added ways to fail.</p>
+          <p class="ev">Seen in AdSense Helper</p>
+        </div>
+        <div class="pr">
+          <h3>Motion should carry meaning</h3>
+          <p>In Expressive Send the paper plane shows that a message travels to a person. It is also kept short enough that it never slows a conversation down.</p>
+          <p class="ev">Seen in Expressive Send</p>
+        </div>
+        <div class="pr">
+          <h3>Choose the simplest tool that fully solves it</h3>
+          <p>A static page on Cloudflare where that is enough, a Flask application with MongoDB and Google sign-in where it is not. Small dependencies keep the code readable and the pages fast on any screen.</p>
+          <p class="ev">Seen in every project</p>
+        </div>
+        <div class="pr">
+          <h3>Ship the unglamorous pages</h3>
+          <p>Terms, privacy, a sitemap, search console readiness and a way to reach me. A project that cannot be trusted or found is not finished.</p>
+          <p class="ev">Seen in AdSense Helper and txtskill</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap">
+      <div>
+        <h2>Have something to build, or feedback on my work?</h2>
+        <p>I read every message. Email is the fastest way to reach me.</p>
+      </div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <a class="btn" href="contact.html">Connect with me</a>
+        <a class="btn ghost" data-email href="mailto:kaustav4535@gmail.com">kaustav4535@gmail.com</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <a class="brand" href="index.html">kaustav<span>.portfolio</span></a>
+        <p>Full-stack products, interface design and deployment by Kaustav Khanikar.</p>
+      </div>
+      <div>
+        <h4>Pages</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="skills.html">Skills</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Connect</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a data-email href="mailto:kaustav4535@gmail.com">kaustav4535@gmail.com</a></li>
+          <li><a data-phone href="tel:+919395046594">+91 9395046594</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="legal">&copy; <span data-year>2026</span> Kaustav Khanikar. Names and marks of other companies shown in my projects belong to their owners.</p>
+  </div>
+</footer>
+
+<script src="assets/js/config.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>
