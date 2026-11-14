@@ -202,3 +202,176 @@
 <script src="assets/js/main.js"></script>
 </body>
 </html>
+
+
+
+
+
+
+<!-- SUNFLOWER MINI PLAYER: paste before </body> -->
+<style>
+/* Isolated player styles: no global selectors or site-wide colour changes. */
+#sv-sunflower-player {
+  width: min(calc(100% - 28px), 440px);
+  margin: 26px auto 20px;
+  padding: 11px 12px;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  color: #fff;
+  background: linear-gradient(115deg, #292333, #191923);
+  border: 1px solid rgba(255,255,255,.11);
+  border-radius: 17px;
+  box-shadow: 0 8px 25px rgba(0,0,0,.18);
+  font-family: inherit;
+  position: relative;
+  isolation: isolate;
+}
+#sv-sunflower-player * { box-sizing: border-box; }
+#sv-sunflower-player .sv-art {
+  width: 49px; height: 49px; flex: 0 0 49px;
+  display: grid; place-items: center; border-radius: 12px;
+  color: #fff; font-size: 23px;
+  background:
+    radial-gradient(circle at 28% 22%, rgba(255,255,255,.48), transparent 25%),
+    linear-gradient(140deg, #ffad69, #ed568d 55%, #765bd0);
+}
+#sv-sunflower-player .sv-main { min-width: 0; flex: 1; }
+#sv-sunflower-player .sv-heading { display:flex; align-items:center; gap:7px; min-width:0; }
+#sv-sunflower-player .sv-title {
+  overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
+  color:#fff; font-size:13px; line-height:1.25; font-weight:750;
+}
+#sv-sunflower-player .sv-artist { margin-top:3px; color:#aaa9b5; font-size:11px; line-height:1.2; }
+#sv-sunflower-player .sv-live { display:none; gap:2px; align-items:end; height:12px; }
+#sv-sunflower-player.sv-playing .sv-live { display:flex; }
+#sv-sunflower-player .sv-live i {
+  display:block; width:2px; height:5px; border-radius:3px;
+  background:#ff5795; animation:sv-sunflower-eq .55s ease-in-out infinite alternate;
+}
+#sv-sunflower-player .sv-live i:nth-child(2) { animation-delay:.16s; }
+#sv-sunflower-player .sv-live i:nth-child(3) { animation-delay:.30s; }
+@keyframes sv-sunflower-eq { to { height:12px; } }
+#sv-sunflower-player .sv-bottom { display:flex; align-items:center; gap:7px; margin-top:7px; }
+#sv-sunflower-player .sv-time { color:#aaa9b5; font-size:9px; font-variant-numeric:tabular-nums; }
+#sv-sunflower-player .sv-seek { min-width:0; width:100%; height:3px; margin:0; accent-color:#ff5795; cursor:pointer; }
+#sv-sunflower-player .sv-toggle {
+  width:38px; height:38px; flex:0 0 38px; display:grid; place-items:center;
+  border:0; border-radius:50%; color:#fff;
+  background:linear-gradient(145deg,#ff79ad,#ed397f);
+  box-shadow:0 4px 13px rgba(255,79,145,.24);
+  font-size:15px; cursor:pointer; -webkit-tap-highlight-color:transparent;
+}
+#sv-sunflower-player .sv-toggle:active { transform:scale(.94); }
+#sv-sunflower-player .sv-state {
+  position:absolute; left:72px; bottom:-15px; color:#aaa9b5;
+  font-size:9px; line-height:1;
+}
+@media(max-width:360px) {
+  #sv-sunflower-player { gap:9px; padding:10px; }
+  #sv-sunflower-player .sv-art { width:45px; height:45px; flex-basis:45px; }
+  #sv-sunflower-player .sv-state { left:64px; }
+}
+</style>
+
+<div id="sv-sunflower-player" aria-label="Sunflower music player">
+  <div class="sv-art" aria-hidden="true">♫</div>
+  <div class="sv-main">
+    <div class="sv-heading">
+      <div class="sv-title">Sunflower</div>
+      <span class="sv-live" aria-hidden="true"><i></i><i></i><i></i></span>
+    </div>
+    <div class="sv-artist">Post Malone &amp; Swae Lee</div>
+    <div class="sv-bottom">
+      <span class="sv-time" id="sv-current">0:00</span>
+      <input class="sv-seek" id="sv-seek" type="range" min="0" max="100" value="0" step="0.1" aria-label="Song progress">
+      <span class="sv-time" id="sv-duration">0:00</span>
+    </div>
+  </div>
+  <button class="sv-toggle" id="sv-toggle" type="button" aria-label="Turn music off" title="Turn music off">Ⅱ</button>
+  <div class="sv-state" id="sv-state" role="status">Starting music…</div>
+  <audio id="sv-audio" autoplay preload="auto" loop playsinline>
+    <source src="https://res.cloudinary.com/dhgfh8g32/raw/upload/v1794641334/nexusvault/Post_Malone__Swae_Lee_-_Sunflower__Spider-Man__Into_the_Spider-Verse__256k_q8cdue.mp3" type="audio/mpeg">
+  </audio>
+</div>
+
+<script>
+(() => {
+  const root = document.getElementById('sv-sunflower-player');
+  if (!root || root.dataset.initialized) return;
+  root.dataset.initialized = 'true';
+
+  const audio = root.querySelector('#sv-audio');
+  const toggle = root.querySelector('#sv-toggle');
+  const seek = root.querySelector('#sv-seek');
+  const current = root.querySelector('#sv-current');
+  const duration = root.querySelector('#sv-duration');
+  const state = root.querySelector('#sv-state');
+
+  // Use the page/browser's normal output level; the device volume buttons
+  // control the actual listening volume.
+  audio.volume = 1;
+
+  const clock = value => {
+    if (!Number.isFinite(value)) return '0:00';
+    return Math.floor(value / 60) + ':' + String(Math.floor(value % 60)).padStart(2, '0');
+  };
+
+  function updateButton() {
+    const playing = !audio.paused;
+    toggle.textContent = playing ? 'Ⅱ' : '▶';
+    toggle.setAttribute('aria-label', playing ? 'Turn music off' : 'Turn music on');
+    toggle.title = playing ? 'Turn music off' : 'Turn music on';
+    root.classList.toggle('sv-playing', playing);
+  }
+
+  async function startMusic() {
+    try {
+      await audio.play();
+      state.textContent = 'Music is on';
+      updateButton();
+    } catch (error) {
+      // Browsers commonly block sound autoplay until a user gesture.
+      state.textContent = 'Autoplay blocked — tap ▶ once';
+      updateButton();
+      console.info('Browser blocked audio autoplay:', error);
+    }
+  }
+
+  toggle.addEventListener('click', async () => {
+    if (audio.paused) {
+      await startMusic();
+    } else {
+      audio.pause();
+      state.textContent = 'Music is off';
+      updateButton();
+    }
+  });
+
+  audio.addEventListener('loadedmetadata', () => {
+    duration.textContent = clock(audio.duration);
+  });
+  audio.addEventListener('timeupdate', () => {
+    current.textContent = clock(audio.currentTime);
+    if (Number.isFinite(audio.duration) && audio.duration > 0) {
+      seek.value = (audio.currentTime / audio.duration) * 100;
+    }
+  });
+  seek.addEventListener('input', () => {
+    if (Number.isFinite(audio.duration) && audio.duration > 0) {
+      audio.currentTime = Number(seek.value) / 100 * audio.duration;
+    }
+  });
+  audio.addEventListener('playing', () => {
+    state.textContent = 'Music is on';
+    updateButton();
+  });
+  audio.addEventListener('pause', updateButton);
+  audio.addEventListener('waiting', () => state.textContent = 'Loading music…');
+  audio.addEventListener('error', () => state.textContent = 'Audio unavailable — check connection');
+
+  // Attempt audible autoplay immediately when the page loads.
+  startMusic();
+})();
+</script>
+
